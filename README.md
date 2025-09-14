@@ -1,53 +1,85 @@
-# Plateforme E-commerce Multi-vendeurs avec Chatbot IA
+# 🛒 Plateforme E-commerce Multi-Vendeurs
 
-## 🏗️ Architecture du Projet
+![Django](https://img.shields.io/badge/Django-4.2+-green.svg)
+![React](https://img.shields.io/badge/React-18+-blue.svg)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-blue.svg)
+![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)
+
+Une plateforme e-commerce professionnelle avec **gestion multi-vendeurs**, **chatbot IA**, et **architecture moderne** développée avec Django et React.
+
+## 🎯 Fonctionnalités Principales
+
+- 🏪 **Multi-vendeurs** : Gestion complète de vendeurs indépendants
+- 🛍️ **Catalogue avancé** : Catégories, filtres, recherche intelligente
+- 💳 **Paiements sécurisés** : Stripe, PayPal, gestion des transactions
+- 🤖 **Chatbot IA** : Support client 24/7 avec intelligence artificielle
+- 📊 **Analytics** : Tableaux de bord vendeurs et administrateurs
+- 🔐 **Sécurité renforcée** : Authentification, validation, protection CSRF
+- 📱 **Responsive** : Interface optimisée mobile et desktop
+
+## 🚀 Démarrage Rapide avec Docker
+
+### Prérequis
+- Docker Desktop installé
+- 4GB RAM libre minimum
+
+### Installation
+```bash
+# Cloner le projet
+git clone [url-du-repo]
+cd Projet-ecomerce
+
+# Démarrer avec Docker (Recommandé)
+docker.bat start
+
+# Ou sur Linux/Mac
+chmod +x docker.sh
+./docker.sh start
+```
+
+### Accès aux services
+- **Frontend** : http://localhost:3000
+- **Backend API** : http://localhost:8000
+- **Admin DB** : http://localhost:8080
+
+## 📁 Structure du Projet
 
 ```
 Projet-ecomerce/
-├── backend/                    # API Django
-│   ├── apps/                   # Applications Django modulaires
-│   │   ├── users/              # Gestion utilisateurs
-│   │   ├── products/           # Catalogue produits
-│   │   ├── orders/             # Commandes
-│   │   ├── payments/           # Système de paiement
-│   │   ├── promotions/         # Marketing et promotions
-│   │   ├── notifications/      # Notifications
-│   │   ├── support/            # Support client
-│   │   ├── chatbot/            # Chatbot IA
-│   │   └── analytics/          # Statistiques
-│   ├── core/                   # Configuration Django
-│   ├── static/                 # Fichiers statiques
-│   ├── media/                  # Uploads utilisateurs
-│   ├── templates/              # Templates Django
-│   └── requirements/           # Dépendances Python
-├── frontend/                   # Interface React
+├── backend/                 # API Django
+│   ├── apps/
+│   │   ├── users/          # Gestion utilisateurs
+│   │   ├── products/       # Catalogue produits
+│   │   ├── orders/         # Commandes
+│   │   ├── payments/       # Paiements
+│   │   ├── chatbot/        # IA & Chat
+│   │   └── analytics/      # Statistiques
+│   ├── core/               # Configuration
+│   └── requirements.txt
+├── frontend/               # Interface React
 │   ├── src/
-│   │   ├── components/         # Composants React
-│   │   │   └── Chat/           # Interface chatbot
-│   │   ├── pages/              # Pages de l'application
-│   │   ├── services/           # Services API
-│   │   ├── hooks/              # Hooks React personnalisés
-│   │   ├── utils/              # Utilitaires
-│   │   └── styles/             # Styles CSS/Sass
-│   └── public/                 # Assets publics
-├── docs/                       # Documentation
-├── scripts/                    # Scripts d'automatisation
-├── myenv/                      # Environnement virtuel Python
-└── .github/                    # Workflows CI/CD
+│   │   ├── components/     # Composants UI
+│   │   ├── pages/          # Pages principales
+│   │   ├── services/       # API calls
+│   │   └── hooks/          # React hooks
+│   └── package.json
+├── docker-compose.yml      # Orchestration services
+├── DOCKER.md              # Guide Docker complet
+└── README.md              # Ce fichier
 ```
 
-## 🚀 Technologies
+## �️ Stack Technique
 
 ### Backend
-- **Django 4.2+** avec Django REST Framework
-- **PostgreSQL** (production) / SQLite (développement)
-- **Redis** pour cache et sessions
-- **Celery** pour tâches asynchrones
-- **Django Channels** pour WebSockets (chatbot)
-- **OpenAI GPT / Claude** pour IA conversationnelle
+- **Framework** : Django 4.2+ LTS
+- **API** : Django REST Framework
+- **Base de données** : PostgreSQL 15+
+- **Cache** : Redis
+- **IA** : OpenAI GPT / Anthropic Claude
+- **WebSocket** : Django Channels
 
 ### Frontend
-- **React 18+** avec TypeScript
+- **Framework** : React 18+ avec TypeScript
 - **Redux Toolkit** ou Zustand pour state management
 - **Tailwind CSS** ou Bootstrap 5 pour styling
 - **Axios** pour requêtes API
@@ -176,6 +208,18 @@ npm run lint
 - [Architecture détaillée](docs/architecture.md)
 - [API Documentation](docs/api.md)
 - [Guide de déploiement](docs/deployment.md)
+- [Guide Docker complet](DOCKER.md)
+- [Installation pas à pas](INSTALLATION.md)
+- [Guide de contribution](CONTRIBUTORS.md)
+
+## 🤝 Contribution
+
+Nous accueillons les contributions de la communauté ! 
+
+- 📋 **Guidelines** : Voir [CONTRIBUTORS.md](CONTRIBUTORS.md)
+- 📜 **Code de conduite** : [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- 🐛 **Signaler un bug** : Ouvrir une [issue](../../issues)
+- 💡 **Proposer une fonctionnalité** : Ouvrir une [discussion](../../discussions)
 - [Gestion des branches](BRANCHES.md)
 
 ## 🤝 Contribution
