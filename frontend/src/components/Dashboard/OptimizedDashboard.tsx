@@ -14,6 +14,7 @@ import {
   InputGroup
 } from 'react-bootstrap';
 import ProductManagement from '../Products/ProductManagement';
+import OrderManagement from '../Orders/OrderManagement';
 import './OptimizedDashboard.css';
 
 interface User {
@@ -339,15 +340,10 @@ const OptimizedDashboard: React.FC<OptimizedDashboardProps> = ({ user, onLogout 
           {/* Product Management */}
           {activeSection === 'products' && <ProductManagement />}
           
-          {/* Autres sections à implémenter */}
-          {activeSection === 'orders' && (
-            <div className="text-center py-5">
-              <i className="bi bi-cart3 text-muted" style={{ fontSize: '3rem' }}></i>
-              <h3 className="mt-3">Gestion des Commandes</h3>
-              <p className="text-muted">Cette section sera bientôt disponible</p>
-            </div>
-          )}
+          {/* Order Management */}
+          {activeSection === 'orders' && <OrderManagement />}
           
+          {/* Autres sections à implémenter */}
           {activeSection === 'customers' && (
             <div className="text-center py-5">
               <i className="bi bi-people text-muted" style={{ fontSize: '3rem' }}></i>
