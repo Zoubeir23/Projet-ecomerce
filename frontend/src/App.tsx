@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import VendorDashboard from './components/Dashboard/VendorDashboard';
+import BootstrapDashboard from './components/Dashboard/BootstrapDashboard';
 
 function App() {
   return (
     <div className="App">
-      <VendorDashboard />
+      <BootstrapDashboard />
     </div>
   );
 }

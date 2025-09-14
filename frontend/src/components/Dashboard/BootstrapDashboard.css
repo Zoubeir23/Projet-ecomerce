@@ -1,0 +1,140 @@
+/* Custom styles for Bootstrap Dashboard */
+
+.hover-bg-light:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-nav .nav-link {
+  transition: all 0.3s ease;
+  border-radius: 0.375rem;
+}
+
+.sidebar-nav .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  transform: translateX(4px);
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.progress {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  border-radius: 10px;
+}
+
+.btn-link {
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+/* Custom scrollbar for sidebar */
+.sidebar-nav {
+  overflow-y: auto;
+  max-height: calc(100vh - 80px);
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100% !important;
+    min-height: auto !important;
+    position: relative !important;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+  }
+  
+  .sidebar-nav {
+    flex-direction: row !important;
+    overflow-x: auto;
+    padding: 0.5rem;
+  }
+  
+  .sidebar-nav .nav-link {
+    min-width: 120px;
+    text-align: center;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+/* Badge animations */
+.badge {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Card header styling */
+.card-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdown styling */
+.dropdown-toggle::after {
+  margin-left: 0.5rem;
+}
+
+/* Progress bar animations */
+.progress-bar {
+  animation: progressAnimation 1s ease-in-out;
+}
+
+@keyframes progressAnimation {
+  from {
+    width: 0;
+  }
+}
+
+/* Icon styling */
+.bi {
+  font-style: normal;
+}
+
+/* Custom success color variations */
+.text-success-dark {
+  color: #0d6efd !important;
+}
+
+.bg-success-light {
+  background-color: rgba(25, 135, 84, 0.1) !important;
+}
