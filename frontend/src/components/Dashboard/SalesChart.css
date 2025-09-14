@@ -1,0 +1,152 @@
+.sales-chart {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+  grid-column: span 2;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.chart-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.chart-period select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: white;
+  color: #64748b;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.chart-metrics {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.metric-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.metric-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.metric-item.income .metric-dot {
+  background: #4ade80;
+}
+
+.metric-item.expenses .metric-dot {
+  background: #f97316;
+}
+
+.metric-item.balance .metric-dot {
+  background: #06b6d4;
+}
+
+.metric-amount {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.metric-trend {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+}
+
+.metric-trend.positive {
+  color: #059669;
+  background: #d1fae5;
+}
+
+.metric-trend.negative {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.chart-container {
+  position: relative;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 200px;
+}
+
+.chart-point {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chart-point:hover {
+  r: 6;
+  filter: drop-shadow(0 2px 4px rgba(74, 222, 128, 0.3));
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding: 0 0.5rem;
+}
+
+.chart-label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sales-chart {
+    grid-column: span 1;
+    padding: 1rem;
+  }
+  
+  .chart-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .chart-metrics {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .metric-amount {
+    font-size: 1rem;
+  }
+}

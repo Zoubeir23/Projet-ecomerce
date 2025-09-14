@@ -1,5 +1,8 @@
-{
-  "name": "ecommerce-frontend",
+{  "name": "ecommerce-frontend",
+  "version": "1.0.0",
+  "description": "Frontend React pour la plateforme e-commerce multi-vendeurs",
+  "license": "MIT",
+  "main": "src/index.tsx","name": "ecommerce-frontend",
   "version": "1.0.0",
   "description": "Frontend React pour plateforme e-commerce multi-vendeurs",
   "main": "src/index.js",

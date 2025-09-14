@@ -1,0 +1,147 @@
+.sales-target {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.target-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+
+.target-chart {
+  margin-bottom: 1.5rem;
+}
+
+.circular-progress {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-background {
+  transition: stroke-dasharray 0.3s ease;
+}
+
+.progress-ring-progress {
+  transition: stroke-dasharray 0.8s ease-in-out;
+  stroke-linecap: round;
+}
+
+.progress-ring-progress.daily {
+  animation: progressDaily 2s ease-in-out;
+}
+
+.progress-ring-progress.monthly {
+  animation: progressMonthly 2.5s ease-in-out;
+}
+
+@keyframes progressDaily {
+  from { stroke-dasharray: 0 314; }
+}
+
+@keyframes progressMonthly {
+  from { stroke-dasharray: 0 264; }
+}
+
+.progress-center {
+  position: absolute;
+  text-align: center;
+}
+
+.progress-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1;
+}
+
+.progress-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+.target-metrics {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.target-metric {
+  text-align: center;
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.metric-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.metric-indicator.daily {
+  background: #4ade80;
+}
+
+.metric-indicator.monthly {
+  background: #06b6d4;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.metric-achievement {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sales-target {
+    padding: 1rem;
+  }
+  
+  .target-chart svg {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .progress-value {
+    font-size: 1.25rem;
+  }
+  
+  .metric-value {
+    font-size: 1.25rem;
+  }
+}
