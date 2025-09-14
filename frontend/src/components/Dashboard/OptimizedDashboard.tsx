@@ -13,6 +13,7 @@ import {
   Form,
   InputGroup
 } from 'react-bootstrap';
+import ProductManagement from '../Products/ProductManagement';
 import './OptimizedDashboard.css';
 
 interface User {
@@ -158,162 +159,218 @@ const OptimizedDashboard: React.FC<OptimizedDashboardProps> = ({ user, onLogout 
 
         {/* Content */}
         <Container fluid className="dashboard-content">
-          {/* Metrics Row */}
-          <Row className="mb-4">
-            {metricsData.map((metric, index) => (
-              <Col lg={3} md={6} className="mb-3" key={index}>
-                <Card className="metric-card h-100">
-                  <Card.Body className="d-flex align-items-center">
-                    <div className="metric-icon me-3">
-                      <i className={`${metric.icon} text-primary`}></i>
-                    </div>
-                    <div className="metric-details flex-grow-1">
-                      <h3 className="metric-value">{metric.value}</h3>
-                      <p className="metric-title">{metric.title}</p>
-                      <div className="d-flex align-items-center">
-                        <Badge bg={metric.changeType} className="me-2">
-                          {metric.change}
-                        </Badge>
-                        <small className="text-muted">{metric.description}</small>
+          {activeSection === 'dashboard' && (
+            <>
+              {/* Metrics Row */}
+              <Row className="mb-4">
+                {metricsData.map((metric, index) => (
+                  <Col lg={3} md={6} className="mb-3" key={index}>
+                    <Card className="metric-card h-100">
+                      <Card.Body className="d-flex align-items-center">
+                        <div className="metric-icon me-3">
+                          <i className={`${metric.icon} text-primary`}></i>
+                        </div>
+                        <div className="metric-details flex-grow-1">
+                          <h3 className="metric-value">{metric.value}</h3>
+                          <p className="metric-title">{metric.title}</p>
+                          <div className="d-flex align-items-center">
+                            <Badge bg={metric.changeType} className="me-2">
+                              {metric.change}
+                            </Badge>
+                            <small className="text-muted">{metric.description}</small>
+                          </div>
+                        </div>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+
+              <Row>
+                {/* Sales Chart */}
+                <Col lg={8} className="mb-4">
+                  <Card className="chart-card">
+                    <Card.Header className="d-flex justify-content-between align-items-center">
+                      <h5 className="card-title">Sales Overview</h5>
+                      <div className="chart-actions">
+                        <Form.Select size="sm" style={{ width: 'auto' }}>
+                          <option>Last 7 days</option>
+                          <option>Last 30 days</option>
+                          <option>Last 3 months</option>
+                        </Form.Select>
                       </div>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-
-          <Row>
-            {/* Sales Chart */}
-            <Col lg={8} className="mb-4">
-              <Card className="chart-card">
-                <Card.Header className="d-flex justify-content-between align-items-center">
-                  <h5 className="card-title">Sales Overview</h5>
-                  <div className="chart-actions">
-                    <Form.Select size="sm" style={{ width: 'auto' }}>
-                      <option>Last 7 days</option>
-                      <option>Last 30 days</option>
-                      <option>Last 3 months</option>
-                    </Form.Select>
-                  </div>
-                </Card.Header>
-                <Card.Body>
-                  <div className="sales-summary mb-3">
-                    <Row>
-                      <Col md={4}>
-                        <div className="summary-item">
-                          <div className="summary-label">
-                            <span className="indicator bg-primary"></span>
-                            Revenue
-                          </div>
-                          <h4 className="summary-value">€23,456</h4>
-                        </div>
-                      </Col>
-                      <Col md={4}>
-                        <div className="summary-item">
-                          <div className="summary-label">
-                            <span className="indicator bg-success"></span>
-                            Orders
-                          </div>
-                          <h4 className="summary-value">1,234</h4>
-                        </div>
-                      </Col>
-                      <Col md={4}>
-                        <div className="summary-item">
-                          <div className="summary-label">
-                            <span className="indicator bg-warning"></span>
-                            Avg. Value
-                          </div>
-                          <h4 className="summary-value">€89.45</h4>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                  
-                  {/* Simplified Chart Placeholder */}
-                  <div className="chart-placeholder">
-                    <div className="chart-bars">
-                      {[65, 45, 78, 52, 89, 67, 94].map((height, index) => (
-                        <div 
-                          key={index}
-                          className="chart-bar"
-                          style={{ height: `${height}%` }}
-                        ></div>
-                      ))}
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            {/* Recent Orders */}
-            <Col lg={4} className="mb-4">
-              <Card className="orders-card">
-                <Card.Header className="d-flex justify-content-between align-items-center">
-                  <h5 className="card-title">Recent Orders</h5>
-                  <Button variant="link" size="sm" className="p-0">
-                    View all
-                  </Button>
-                </Card.Header>
-                <Card.Body className="p-0">
-                  <div className="orders-list">
-                    {recentOrders.map((order, index) => (
-                      <div key={index} className="order-item">
-                        <div className="order-info">
-                          <div className="order-id">{order.id}</div>
-                          <div className="order-customer">{order.customer}</div>
-                          <div className="order-time">{order.date}</div>
-                        </div>
-                        <div className="order-details">
-                          <div className="order-amount">{order.amount}</div>
-                          <Badge bg={getStatusVariant(order.status)} className="order-status">
-                            {order.status}
-                          </Badge>
+                    </Card.Header>
+                    <Card.Body>
+                      <div className="sales-summary mb-3">
+                        <Row>
+                          <Col md={4}>
+                            <div className="summary-item">
+                              <div className="summary-label">
+                                <span className="indicator bg-primary"></span>
+                                Revenue
+                              </div>
+                              <h4 className="summary-value">€23,456</h4>
+                            </div>
+                          </Col>
+                          <Col md={4}>
+                            <div className="summary-item">
+                              <div className="summary-label">
+                                <span className="indicator bg-success"></span>
+                                Orders
+                              </div>
+                              <h4 className="summary-value">1,234</h4>
+                            </div>
+                          </Col>
+                          <Col md={4}>
+                            <div className="summary-item">
+                              <div className="summary-label">
+                                <span className="indicator bg-warning"></span>
+                                Avg. Value
+                              </div>
+                              <h4 className="summary-value">€89.45</h4>
+                            </div>
+                          </Col>
+                        </Row>
+                      </div>
+                      
+                      {/* Simplified Chart Placeholder */}
+                      <div className="chart-placeholder">
+                        <div className="chart-bars">
+                          {[65, 45, 78, 52, 89, 67, 94].map((height, index) => (
+                            <div 
+                              key={index}
+                              className="chart-bar"
+                              style={{ height: `${height}%` }}
+                            ></div>
+                          ))}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
+                    </Card.Body>
+                  </Card>
+                </Col>
 
-          {/* Quick Actions */}
-          <Row>
-            <Col lg={12}>
-              <Card className="actions-card">
-                <Card.Body>
-                  <h5 className="card-title mb-3">Quick Actions</h5>
-                  <Row>
-                    <Col md={3}>
-                      <Button variant="outline-primary" className="w-100 action-btn">
-                        <i className="bi bi-plus-circle me-2"></i>
-                        Add Product
+                {/* Recent Orders */}
+                <Col lg={4} className="mb-4">
+                  <Card className="orders-card">
+                    <Card.Header className="d-flex justify-content-between align-items-center">
+                      <h5 className="card-title">Recent Orders</h5>
+                      <Button variant="link" size="sm" className="p-0">
+                        View all
                       </Button>
-                    </Col>
-                    <Col md={3}>
-                      <Button variant="outline-success" className="w-100 action-btn">
-                        <i className="bi bi-eye me-2"></i>
-                        View Orders
-                      </Button>
-                    </Col>
-                    <Col md={3}>
-                      <Button variant="outline-info" className="w-100 action-btn">
-                        <i className="bi bi-people me-2"></i>
-                        Manage Customers
-                      </Button>
-                    </Col>
-                    <Col md={3}>
-                      <Button variant="outline-warning" className="w-100 action-btn">
-                        <i className="bi bi-graph-up me-2"></i>
-                        View Analytics
-                      </Button>
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
+                    </Card.Header>
+                    <Card.Body className="p-0">
+                      <div className="orders-list">
+                        {recentOrders.map((order, index) => (
+                          <div key={index} className="order-item">
+                            <div className="order-info">
+                              <div className="order-id">{order.id}</div>
+                              <div className="order-customer">{order.customer}</div>
+                              <div className="order-time">{order.date}</div>
+                            </div>
+                            <div className="order-details">
+                              <div className="order-amount">{order.amount}</div>
+                              <Badge bg={getStatusVariant(order.status)} className="order-status">
+                                {order.status}
+                              </Badge>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+
+              {/* Quick Actions */}
+              <Row>
+                <Col lg={12}>
+                  <Card className="actions-card">
+                    <Card.Body>
+                      <h5 className="card-title mb-3">Quick Actions</h5>
+                      <Row>
+                        <Col md={3}>
+                          <Button 
+                            variant="outline-primary" 
+                            className="w-100 action-btn"
+                            onClick={() => setActiveSection('products')}
+                          >
+                            <i className="bi bi-plus-circle me-2"></i>
+                            Add Product
+                          </Button>
+                        </Col>
+                        <Col md={3}>
+                          <Button 
+                            variant="outline-success" 
+                            className="w-100 action-btn"
+                            onClick={() => setActiveSection('orders')}
+                          >
+                            <i className="bi bi-eye me-2"></i>
+                            View Orders
+                          </Button>
+                        </Col>
+                        <Col md={3}>
+                          <Button 
+                            variant="outline-info" 
+                            className="w-100 action-btn"
+                            onClick={() => setActiveSection('customers')}
+                          >
+                            <i className="bi bi-people me-2"></i>
+                            Manage Customers
+                          </Button>
+                        </Col>
+                        <Col md={3}>
+                          <Button 
+                            variant="outline-warning" 
+                            className="w-100 action-btn"
+                            onClick={() => setActiveSection('analytics')}
+                          >
+                            <i className="bi bi-graph-up me-2"></i>
+                            View Analytics
+                          </Button>
+                        </Col>
+                      </Row>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+            </>
+          )}
+
+          {/* Product Management */}
+          {activeSection === 'products' && <ProductManagement />}
+          
+          {/* Autres sections à implémenter */}
+          {activeSection === 'orders' && (
+            <div className="text-center py-5">
+              <i className="bi bi-cart3 text-muted" style={{ fontSize: '3rem' }}></i>
+              <h3 className="mt-3">Gestion des Commandes</h3>
+              <p className="text-muted">Cette section sera bientôt disponible</p>
+            </div>
+          )}
+          
+          {activeSection === 'customers' && (
+            <div className="text-center py-5">
+              <i className="bi bi-people text-muted" style={{ fontSize: '3rem' }}></i>
+              <h3 className="mt-3">Gestion des Clients</h3>
+              <p className="text-muted">Cette section sera bientôt disponible</p>
+            </div>
+          )}
+          
+          {activeSection === 'analytics' && (
+            <div className="text-center py-5">
+              <i className="bi bi-graph-up text-muted" style={{ fontSize: '3rem' }}></i>
+              <h3 className="mt-3">Analytics</h3>
+              <p className="text-muted">Cette section sera bientôt disponible</p>
+            </div>
+          )}
+          
+          {activeSection === 'settings' && (
+            <div className="text-center py-5">
+              <i className="bi bi-gear text-muted" style={{ fontSize: '3rem' }}></i>
+              <h3 className="mt-3">Paramètres</h3>
+              <p className="text-muted">Cette section sera bientôt disponible</p>
+            </div>
+          )}
         </Container>
       </div>
     </div>

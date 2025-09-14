@@ -32,7 +32,7 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -250,7 +250,7 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
                           type="checkbox"
                           name="acceptTerms"
                           checked={formData.acceptTerms}
-                          onChange={handleInputChange}
+                          onChange={(e) => setFormData(prev => ({ ...prev, acceptTerms: e.target.checked }))}
                           label={
                             <span>
                               J'accepte les{' '}
