@@ -1,0 +1,1 @@
+# Applications Django de la plateforme e-commerce

@@ -1,0 +1,91 @@
+# Django et Framework principal
+Django==5.2.6
+djangorestframework==3.16.1
+
+# WebSockets et Chat temps réel
+channels==4.3.1
+channels-redis==4.3.0
+
+# Base de données et ORM
+psycopg2-binary==2.9.10
+dj-database-url==3.0.1
+
+# Cache et Sessions
+redis==6.4.0
+django-redis==6.0.0
+
+# Configuration et Environnement
+python-decouple==3.8
+
+# Images et Médias
+Pillow==11.3.0
+
+# API et CORS
+django-cors-headers==4.8.0
+
+# Tâches asynchrones
+celery==5.5.3
+
+# Paiements
+stripe==12.5.1
+
+# Intelligence Artificielle
+openai==1.107.2
+
+# Utilitaires HTTP
+requests==2.32.5
+httpx==0.28.1
+
+# Validation et sérialisation
+pydantic==2.11.9
+
+# OAuth et authentification
+requests-oauthlib==2.0.0
+
+# CLI et interfaces
+click==8.2.1
+click-didyoumean==0.3.1
+click-plugins==1.1.1.2
+click-repl==0.3.0
+
+# Message Queue
+kombu==5.5.4
+amqp==5.3.1
+billiard==4.2.1
+vine==5.1.0
+
+# Utilitaires divers
+python-dateutil==2.9.0.post0
+six==1.17.0
+packaging==25.0
+typing-extensions==4.15.0
+wcwidth==0.2.13
+prompt-toolkit==3.0.52
+tqdm==4.67.1
+colorama==0.4.6
+
+# Sécurité et réseau
+certifi==2025.8.3
+charset-normalizer==3.4.3
+urllib3==2.5.0
+idna==3.10
+
+# Format et parsing
+sqlparse==0.5.3
+asgiref==3.9.1
+msgpack==1.1.1
+tzdata==2025.2
+
+# Types et annotations
+annotated-types==0.7.0
+pydantic-core==2.33.2
+typing-inspection==0.4.1
+
+# HTTP et API avancés
+anyio==4.10.0
+sniffio==1.3.1
+h11==0.16.0
+httpcore==1.0.9
+distro==1.9.0
+jiter==0.10.0
+oauthlib==3.3.1
