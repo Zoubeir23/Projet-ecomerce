@@ -1,56 +1,19 @@
-@echo off@echo off@echo off@echo off
-
+@echo off
+echo.
+echo ==========================================
+echo  CONFIGURATION ENVIRONNEMENT DE DEV
+echo ==========================================
 echo.
 
-echo ========================================echo.
-
-echo   REDIRECTION VERS SCRIPTS ORGANISES
-
-echo ========================================echo ========================================echo.echo.
-
-echo.
-
-echo Les scripts ont ete reorganises dans le dossier scripts/echo   REDIRECTION VERS SCRIPTS ORGANISES
-
-echo Redirection vers scripts\setup.bat...
-
-echo.echo ========================================echo ============================================echo ==========================================
-
-cd scripts
-
-call setup.bat %*echo.
-
-cd ..
-echo Les scripts ont ete reorganises dans le dossier scripts/echo    PLATEFORME E-COMMERCE - CONFIGURATIONecho  CONFIGURATION ENVIRONNEMENT DE DEV
-
-echo Redirection vers scripts\setup.bat...
-
-echo.echo ============================================echo ==========================================
-
-cd scripts
-
-call setup.bat %*echo.echo.
-
-cd ..
-echo Ce script a ete deplace vers le dossier scripts/
-
-echo.REM Verifier si Python est installe
-
-echo Nouvelle utilisation:python --version >nul 2>&1
-
-echo   scripts\setup.batif errorlevel 1 (
-
-echo.    echo [ERREUR] Python n'est pas installe ou pas dans le PATH
-
-echo Redirection automatique...    echo Telecharger Python depuis: https://www.python.org/downloads/
-
-echo.    pause
-
-timeout /t 2 /nobreak >nul    exit /b 1
-
+REM Verifier si Python est installe
+python --version >nul 2>&1
+if errorlevel 1 (
+    echo [ERREUR] Python n'est pas installe ou pas dans le PATH
+    echo Telecharger Python depuis: https://www.python.org/downloads/
+    pause
+    exit /b 1
 )
 
-call scripts\setup.bat
 REM Verifier si Node.js est installe
 node --version >nul 2>&1
 if errorlevel 1 (

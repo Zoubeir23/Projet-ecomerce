@@ -1,68 +1,25 @@
-@echo off@echo off@echo off@echo off
+@echo off
+title Plateforme E-commerce - Environnement de Developpement
 
 echo.
-
-echo ========================================echo.
-
-echo   REDIRECTION VERS SCRIPTS ORGANISES
-
-echo ========================================echo ========================================echo.title Plateforme E-commerce - Environnement de Developpement
-
+echo ============================================
+echo    PLATEFORME E-COMMERCE MULTI-VENDEURS
+echo ============================================
 echo.
 
-echo Les scripts ont ete reorganises dans le dossier scripts/echo   REDIRECTION VERS SCRIPTS ORGANISES
-
-echo Redirection vers scripts\start.bat...
-
-echo.echo ========================================echo ============================================
-
-cd scripts
-
-call start.bat %*echo.
-
-cd ..
-echo Les scripts ont ete reorganises dans le dossier scripts/echo    PLATEFORME E-COMMERCE - DEMARRAGE RAPIDEecho.
-
-echo Redirection vers scripts\start.bat...
-
-echo.echo ============================================echo ============================================
-
-cd scripts
-
-call start.bat %*echo.echo    PLATEFORME E-COMMERCE MULTI-VENDEURS
-
-cd ..
-echo Ce script a ete deplace vers le dossier scripts/echo ============================================
-
-echo.echo.
-
-echo Utilisation:
-
-echo   scripts\start.batREM Verifier si Docker est disponible
-
-echo.docker --version >nul 2>&1
-
-echo Ou directement Docker:if errorlevel 1 (
-
-echo   scripts\docker.bat start    echo [INFO] Docker non detecte - Demarrage en mode local
-
-echo.    goto LOCAL_MODE
-
-echo Pour plus d'informations:) else (
-
-echo   Voir scripts\README.md    echo [INFO] Docker detecte - Choisissez le mode de demarrage:
-
-echo.    echo.
-
-echo Redirection automatique...    echo 1. Docker ^(Recommande^)
-
-echo.    echo 2. Local ^(Backend + Frontend separes^)
-
-timeout /t 3 /nobreak >nul    echo 3. Configuration initiale
-
+REM Verifier si Docker est disponible
+docker --version >nul 2>&1
+if errorlevel 1 (
+    echo [INFO] Docker non detecte - Demarrage en mode local
+    goto LOCAL_MODE
+) else (
+    echo [INFO] Docker detecte - Choisissez le mode de demarrage:
     echo.
-
-call scripts\start.bat    set /p choice="Votre choix (1-3): "
+    echo 1. Docker ^(Recommande^)
+    echo 2. Local ^(Backend + Frontend separes^)
+    echo 3. Configuration initiale
+    echo.
+    set /p choice="Votre choix (1-3): "
     
     if "%choice%"=="1" goto DOCKER_MODE
     if "%choice%"=="2" goto LOCAL_MODE

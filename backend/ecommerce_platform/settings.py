@@ -93,6 +93,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ecommerce_platform.wsgi.application'
 ASGI_APPLICATION = 'ecommerce_platform.asgi.application'
 
+# Modèle User personnalisé
+AUTH_USER_MODEL = 'users.User'
+
 # Configuration des Channels (WebSockets)
 if DEBUG:
     # Configuration simple pour développement sans Redis

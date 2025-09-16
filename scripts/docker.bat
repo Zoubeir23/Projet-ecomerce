@@ -1,54 +1,18 @@
-@echo off@echo off@echo off@echo off
+@echo off
+REM Script de gestion Docker pour Windows (PowerShell)
 
-echo.
+setlocal enabledelayedexpansion
 
-echo ========================================echo.
+REM Fonction pour afficher les messages avec couleurs
+set "GREEN=[92m"
+set "YELLOW=[93m"
+set "RED=[91m"
+set "BLUE=[94m"
+set "NC=[0m"
 
-echo   REDIRECTION VERS SCRIPTS ORGANISES
-
-echo ========================================echo ========================================echo.REM Script de gestion Docker pour Windows (PowerShell)
-
-echo.
-
-echo Les scripts ont ete reorganises dans le dossier scripts/echo   REDIRECTION VERS SCRIPTS ORGANISES
-
-echo Redirection vers scripts\docker.bat...
-
-echo.echo ========================================echo ============================================
-
-cd scripts
-
-call docker.bat %*echo.
-
-cd ..
-echo Les scripts ont ete reorganises dans le dossier scripts/echo    PLATEFORME E-COMMERCE - DOCKERsetlocal enabledelayedexpansion
-
-echo Redirection vers scripts\docker.bat...
-
-echo.echo ============================================
-
-cd scripts
-
-call docker.bat %*echo.REM Fonction pour afficher les messages avec couleurs
-
-cd ..
-echo Ce script a ete deplace vers le dossier scripts/set "GREEN=[92m"
-
-echo.set "YELLOW=[93m"
-
-echo Nouvelle utilisation:set "RED=[91m"
-
-echo   scripts\docker.bat %*set "BLUE=[94m"
-
-echo.set "NC=[0m"
-
-echo Redirection automatique...
-
-echo.REM Vérifier si Docker est installé
-
+REM Vérifier si Docker est installé
 docker --version >nul 2>&1
-
-call scripts\docker.bat %*if errorlevel 1 (
+if errorlevel 1 (
     echo %RED%[ERROR]%NC% Docker n'est pas installé ou n'est pas dans le PATH
     exit /b 1
 )

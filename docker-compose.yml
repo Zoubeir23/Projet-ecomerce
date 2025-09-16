@@ -1,37 +1,70 @@
+# REDIRECTION - Le vrai docker-compose.yml est dans docker/docker-compose.ymlversion: '3.8'
+
+# 
+
+# Les fichiers Docker ont été réorganisés dans le dossier docker/services:
+
+#   # Base de données PostgreSQL
+
+# Pour démarrer les services Docker :  db:
+
+# 1. Utiliser : docker.bat start (script de redirection automatique)    image: postgres:15-alpine
+
+# 2. Ou aller dans docker/ et utiliser : docker-compose up    container_name: ecommerce_db
+
+#    environment:
+
+# Structure organisée :      POSTGRES_DB: ecommerce_db
+
+#   docker/      POSTGRES_USER: ecommerce_user
+
+#   ├── docker-compose.yml  ← Vrai fichier de configuration      POSTGRES_PASSWORD: ecommerce_password
+
+#   ├── .env.docker         ← Variables d'environnement    volumes:
+
+#   └── README.md           ← Documentation Docker      - postgres_data:/var/lib/postgresql/data
+
+#    ports:
+
+# ERREUR : Ce fichier n'est qu'une redirection !      - "5432:5432"
+
+# Veuillez utiliser : cd docker && docker-compose up    networks:
+
+      - ecommerce_network
+
 version: '3.8'
 
-services:
-  # Base de données PostgreSQL
-  db:
-    image: postgres:15-alpine
-    container_name: ecommerce_db
-    environment:
-      POSTGRES_DB: ecommerce_db
-      POSTGRES_USER: ecommerce_user
-      POSTGRES_PASSWORD: ecommerce_password
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    networks:
-      - ecommerce_network
+services:  # Redis pour le cache et les sessions
 
-  # Redis pour le cache et les sessions
-  redis:
-    image: redis:7-alpine
-    container_name: ecommerce_redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    networks:
-      - ecommerce_network
+  redirection:  redis:
 
-  # Backend Django
-  backend:
-    build: 
-      context: ./backend
-      dockerfile: Dockerfile
+    image: alpine:latest    image: redis:7-alpine
+
+    command: >    container_name: ecommerce_redis
+
+      sh -c "    ports:
+
+      echo '❌ ERREUR : Fichier de redirection !';      - "6379:6379"
+
+      echo '';    volumes:
+
+      echo '📁 Les fichiers Docker sont maintenant dans docker/';      - redis_data:/data
+
+      echo '';    networks:
+
+      echo '✅ Utiliser à la place :';      - ecommerce_network
+
+      echo '   docker.bat start';
+
+      echo '   ou';  # Backend Django
+
+      echo '   cd docker && docker-compose up';  backend:
+
+      echo '';    build: 
+
+      exit 1      context: ./backend
+
+      "      dockerfile: Dockerfile
     container_name: ecommerce_backend
     environment:
       - DEBUG=True

@@ -17,223 +17,225 @@ Une plateforme e-commerce professionnelle avec **gestion multi-vendeurs**, **cha
 - 🔐 **Sécurité renforcée** : Authentification, validation, protection CSRF
 - 📱 **Responsive** : Interface optimisée mobile et desktop
 
-## 🚀 Démarrage Rapide avec Docker
-
-### Prérequis
-- Docker Desktop installé
-- 4GB RAM libre minimum
-
-### Installation
-```bash
-# Cloner le projet
-git clone [url-du-repo]
-cd Projet-ecomerce
-
-# Démarrer avec Docker (Recommandé)
-docker.bat start
-
-# Ou sur Linux/Mac
-chmod +x docker.sh
-./docker.sh start
-```
-
-### Accès aux services
-- **Frontend** : http://localhost:3000
-- **Backend API** : http://localhost:8000
-- **Admin DB** : http://localhost:8080
-
-## 📁 Structure du Projet
+## 📁 Structure du Projet (Réorganisée)
 
 ```
 Projet-ecomerce/
-├── backend/                 # API Django
-│   ├── apps/
-│   │   ├── users/          # Gestion utilisateurs
-│   │   ├── products/       # Catalogue produits
-│   │   ├── orders/         # Commandes
-│   │   ├── payments/       # Paiements
-│   │   ├── chatbot/        # IA & Chat
-│   │   └── analytics/      # Statistiques
-│   ├── core/               # Configuration
-│   └── requirements.txt
-├── frontend/               # Interface React
-│   ├── src/
-│   │   ├── components/     # Composants UI
-│   │   ├── pages/          # Pages principales
-│   │   ├── services/       # API calls
-│   │   └── hooks/          # React hooks
-│   └── package.json
-├── docker-compose.yml      # Orchestration services
-├── DOCKER.md              # Guide Docker complet
-└── README.md              # Ce fichier
+├── backend/              # Application Django
+│   ├── apps/            # Applications modulaires
+│   ├── core/            # Configuration centrale
+│   └── requirements/    # Dépendances
+├── frontend/             # Application React
+│   ├── src/             # Code source
+│   └── public/          # Assets publics
+├── docker/               # Configuration Docker
+│   ├── docker-compose.yml
+│   └── .env.docker
+├── scripts/              # Scripts d'automatisation
+│   ├── docker.bat       # Gestion Docker
+│   ├── start.bat        # Démarrage développement
+│   └── setup.bat        # Configuration initiale
+├── docs/                 # Documentation complète
+│   ├── governance/      # Licence, Code de conduite
+│   ├── guides/          # Guides d'utilisation
+│   └── project/         # Documentation technique
+├── .github/             # Templates GitHub
+│   ├── ISSUE_TEMPLATE/  # Templates d'issues
+│   └── pull_request_template.md
+└── README.md            # Ce fichier
 ```
 
-## �️ Stack Technique
+## 🚀 Démarrage Rapide
+
+### Option 1 : Avec Docker (Recommandé)
+```bash
+# Scripts de redirection disponibles à la racine
+docker.bat start          # Lance l'environnement Docker
+start.bat                 # Démarrage développement
+setup.bat                 # Configuration initiale
+
+# Ou directement depuis les dossiers
+cd docker && docker-compose up -d
+cd scripts && docker.bat start
+```
+
+### Option 2 : Installation manuelle
+```bash
+# Backend Django
+cd backend
+pip install -r requirements/dev.txt
+python manage.py migrate
+python manage.py runserver
+
+# Frontend React (nouveau terminal)
+cd frontend
+npm install
+npm start
+```
+
+## 🛠️ Stack Technique
 
 ### Backend
 - **Framework** : Django 4.2+ LTS
 - **API** : Django REST Framework
-- **Base de données** : PostgreSQL 15+
+- **Base de données** : PostgreSQL 15+ / SQLite (dev)
+- **Authentification** : Django Auth + JWT
+- **IA/Chatbot** : OpenAI GPT-4 ou Anthropic Claude
 - **Cache** : Redis
-- **IA** : OpenAI GPT / Anthropic Claude
-- **WebSocket** : Django Channels
+- **WebSockets** : Django Channels
 
 ### Frontend
 - **Framework** : React 18+ avec TypeScript
-- **Redux Toolkit** ou Zustand pour state management
-- **Tailwind CSS** ou Bootstrap 5 pour styling
-- **Axios** pour requêtes API
-- **Socket.io** pour chat temps réel
+- **State Management** : Redux Toolkit / Zustand
+- **Styling** : Tailwind CSS / Bootstrap 5
+- **Chat UI** : Composants temps réel
 
 ### Infrastructure
-- **Gunicorn + Nginx** (production)
-- **Docker** pour containerisation
-- **GitHub Actions** pour CI/CD
+- **Serveur** : Gunicorn + Nginx
+- **Conteneurisation** : Docker + Docker Compose
+- **Files** : AWS S3 / Stockage local
+- **Email** : SendGrid / SMTP
+- **Monitoring** : Sentry
 
-## 🛠️ Installation
+### Paiements
+- **Stripe** : Cartes, virements SEPA
+- **PayPal** : Paiements et cartes
+- **Sécurité** : PCI DSS compliant
+
+## 📋 Installation Détaillée
 
 ### Prérequis
-- Python 3.11+
-- Node.js 18+
-- PostgreSQL (optionnel pour dev)
-- Redis (pour cache et WebSockets)
+- Docker Desktop installé
+- 4GB RAM libre minimum
+- Git installé
 
-### Setup Backend (Django)
-
-1. Activer l'environnement virtuel :
+### 1. Cloner le projet
 ```bash
-# Windows
-myenv\Scripts\activate
-
-# Linux/Mac
-source myenv/bin/activate
+git clone https://github.com/votre-repo/Projet-ecomerce.git
+cd Projet-ecomerce
 ```
 
-2. Installer les dépendances :
+### 2. Configuration de l'environnement
 ```bash
-cd backend
-pip install -r requirements/development.txt
+# Copier les fichiers d'environnement
+copy docker\.env.docker.example docker\.env.docker
+copy backend\.env.example backend\.env
+
+# Modifier les variables d'environnement selon vos besoins
 ```
 
-3. Configuration de la base de données :
+### 3. Lancement avec Docker
 ```bash
-python manage.py migrate
-python manage.py createsuperuser
+# Via script de redirection
+docker.bat start
+
+# Ou directement
+cd docker
+docker-compose up -d
 ```
 
-4. Lancer le serveur de développement :
-```bash
-python manage.py runserver
-```
+### 4. Accès à l'application
+- **Frontend** : http://localhost:3000
+- **Backend API** : http://localhost:8000
+- **Admin Django** : http://localhost:8000/admin
+- **Base de données** : localhost:5432
 
-### Setup Frontend (React)
+## 🤖 Fonctionnalités Chatbot IA
 
-1. Installer les dépendances :
-```bash
-cd frontend
-npm install
-```
+### Capacités intelligentes
+- **Réponses contextuelles** : Accès aux données utilisateur
+- **Intent recognition** : Compréhension des intentions
+- **Base de connaissances** : FAQ dynamique
+- **Escalade automatique** : Transfert vers agents humains
+- **Support multilingue** : Français, anglais
 
-2. Lancer le serveur de développement :
-```bash
-npm start
-```
+### Technologies IA
+- **Service IA** : OpenAI GPT-4 / Anthropic Claude
+- **WebSocket** : Chat temps réel avec Django Channels
+- **Cache intelligent** : Réponses fréquentes mises en cache
+- **Analytics** : Monitoring des performances
 
-## 🌿 Gestion des Branches
+## 🔐 Sécurité et Conformité
 
-### Branches principales
-- `master` : Production (code stable)
-- `develop` : Développement (intégration)
+- **HTTPS obligatoire** en production
+- **Protection CSRF** sur tous les formulaires
+- **Validation stricte** des données d'entrée
+- **Rate limiting** contre les attaques DDoS
+- **Conformité GDPR** pour les conversations IA
+- **Gestion sécurisée** des clés API
 
-### Branches de fonctionnalités
-- `feature/authentication-users`
-- `feature/gestion-produits`
-- `feature/ajout-panier`
-- `feature/chatbot-ia`
-- `feature/systeme-paiement`
-- etc.
+## 📊 Monitoring et Analytics
 
-### Workflow
-```bash
-# Travailler sur une fonctionnalité
-git checkout feature/nom-fonctionnalite
-git add .
-git commit -m "feat: description de la fonctionnalité"
-git push origin feature/nom-fonctionnalite
-
-# Fusionner dans develop
-git checkout develop
-git merge feature/nom-fonctionnalite
-git push origin develop
-```
-
-## 📦 Fonctionnalités Principales
-
-### ✅ Prévues
-- [ ] Authentification multi-niveaux (clients, vendeurs, admins)
-- [ ] Catalogue produits avec recherche avancée
-- [ ] Panier persistant et wishlist
-- [ ] Système de commandes multi-étapes
-- [ ] Intégration paiements (Stripe, PayPal)
-- [ ] Dashboard vendeur avec analytics
-- [ ] **Chatbot IA intelligent 24/7**
-- [ ] Système de notifications temps réel
-- [ ] Promotions et coupons
-- [ ] Interface React moderne
-
-### 🤖 Chatbot IA
-- **IA conversationnelle** avec OpenAI GPT-4
-- **Interface temps réel** avec WebSockets
-- **Base de connaissances** dynamique
-- **Escalade automatique** vers support humain
-- **Analytics** et métriques de performance
-
-## 🔧 Scripts Utiles
-
-```bash
-# Backend
-python manage.py makemigrations
-python manage.py migrate
-python manage.py collectstatic
-python manage.py test
-
-# Frontend
-npm test
-npm run build
-npm run lint
-```
+- **Dashboard vendeur** : Métriques détaillées
+- **Analytics chatbot** : Taux de résolution
+- **Performance monitoring** : Sentry pour les erreurs
+- **Logs structurés** : Suivi des événements
 
 ## 📚 Documentation
 
-- [Architecture détaillée](docs/architecture.md)
-- [API Documentation](docs/api.md)
-- [Guide de déploiement](docs/deployment.md)
-- [Guide Docker complet](DOCKER.md)
-- [Installation pas à pas](INSTALLATION.md)
-- [Guide de contribution](CONTRIBUTORS.md)
+### Gouvernance
+- **[Licence MIT](docs/governance/LICENSE)** - Termes de licence
+- **[Code de Conduite](docs/governance/CODE_OF_CONDUCT.md)** - Règles communauté
+- **[Guide de Contribution](docs/governance/CONTRIBUTORS.md)** - Comment contribuer
+- **[Changelog](docs/governance/CHANGELOG.md)** - Historique des versions
+
+### Guides Techniques
+- **[Installation](docs/guides/)** - Guide d'installation complet
+- **[Déploiement](docs/guides/)** - Guide de déploiement production
+- **[API Documentation](docs/project/)** - Documentation des endpoints
+
+### Templates GitHub
+- **[Bug Report](.github/ISSUE_TEMPLATE/bug_report.md)** - Signaler un bug
+- **[Feature Request](.github/ISSUE_TEMPLATE/feature_request.md)** - Demander une fonctionnalité
+- **[Question](.github/ISSUE_TEMPLATE/question.md)** - Poser une question
+- **[Pull Request](.github/pull_request_template.md)** - Template PR
 
 ## 🤝 Contribution
 
-Nous accueillons les contributions de la communauté ! 
+Les contributions sont les bienvenues ! Pour contribuer :
 
-- 📋 **Guidelines** : Voir [CONTRIBUTORS.md](CONTRIBUTORS.md)
-- 📜 **Code de conduite** : [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-- 🐛 **Signaler un bug** : Ouvrir une [issue](../../issues)
-- 💡 **Proposer une fonctionnalité** : Ouvrir une [discussion](../../discussions)
-- [Gestion des branches](BRANCHES.md)
+1. **Fork** le projet
+2. **Créer une branche** pour votre fonctionnalité
+3. **Commit** vos changements
+4. **Push** vers la branche
+5. **Ouvrir une Pull Request**
 
-## 🤝 Contribution
+Consultez notre [guide de contribution](docs/governance/CONTRIBUTORS.md) pour plus de détails.
 
-1. Fork le projet
-2. Créer une branche feature (`git checkout -b feature/nouvelle-fonctionnalite`)
-3. Commit les changements (`git commit -m 'feat: ajout nouvelle fonctionnalité'`)
-4. Push vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
-5. Ouvrir une Pull Request
+## 🆘 Support et Aide
+
+### Ressources
+- **Documentation** : Dossier `docs/` complet
+- **Issues GitHub** : Utilisez les templates appropriés
+- **Discussions** : Pour les questions générales
+
+### Commandes Utiles
+```bash
+# Vérifier les logs
+docker.bat logs
+
+# Rebuild complet
+docker.bat rebuild
+
+# Tests
+scripts\test.bat
+
+# Backup base de données
+scripts\backup.bat
+```
+
+## 📈 Roadmap
+
+- [ ] **v1.0** : Fonctionnalités de base multi-vendeurs
+- [ ] **v1.1** : Intégration chatbot IA avancé
+- [ ] **v1.2** : Analytics et reporting avancés
+- [ ] **v2.0** : Mobile app (React Native)
+- [ ] **v2.1** : Marketplace international
 
 ## 📄 Licence
 
-Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de détails.
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](docs/governance/LICENSE) pour plus de détails.
 
 ---
 
-> **Note** : Ce projet est en cours de développement. Le chatbot IA représente une fonctionnalité innovante pour améliorer l'expérience client.
+**Développé avec ❤️ pour une expérience e-commerce moderne et intelligente**
